@@ -12,7 +12,7 @@
             <i class="fas fa-check-circle fa-5x"></i>
         </div>
         <h4 class="mb-4 text-white">Selamat Menikmati</h4>
-        <a href="/" class="px-5 btn btn-green btn-lg">
+        <a href="/home" class="px-5 btn btn-green btn-lg">
             Mulai Nonton
         </a>
     </div>
