@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('user_devices', function (Blueprint $table) {
             $table->id();
-            $table->$table->timestamps();
+            $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->string('device_name', 100)->nullable(false);
+            $table->string('device_id', 100)->nullable(false)->unique('device_id_unique');
+            $table->string('device_type', 100)->nullable(true);
+            $table->string('platform', 100)->nullable(true);
+            $table->string('platform_version', 100)->nullable(true);
+            $table->string('browser', 100)->nullable(true);
+            $table->string('browser_version', 100)->nullable(true);
+            $table->timestamp('last_active')->nullable(true);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
