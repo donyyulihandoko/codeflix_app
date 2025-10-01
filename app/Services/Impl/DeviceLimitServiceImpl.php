@@ -2,13 +2,11 @@
 
 namespace App\Services\Impl;
 
-class DeviceLimitServiceImpl
+use App\Services\DeviceLimitService;
+
+class DeviceLimitServiceImpl implements DeviceLimitService
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+    public function registerDevice() {}
+
+    public function logoutDevice() {}
 }
