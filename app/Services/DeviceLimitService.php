@@ -8,5 +8,5 @@ interface DeviceLimitService
 {
     public function registerDevice(User $user);
 
-    public function logoutDevice();
+    public function logoutDevice($deviceId);
 }

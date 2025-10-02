@@ -33,7 +33,11 @@ class DeviceLimitServiceImpl implements DeviceLimitService
     }
 
 
-    public function logoutDevice() {}
+    public function logoutDevice($deviceId)
+    {
+        UserDevice::query()->where('device_id', $deviceId)->delete();
+        session()->forget('device_id');
+    }
 
     private function getDeviceInfo(): array
     {
@@ -63,8 +67,11 @@ class DeviceLimitServiceImpl implements DeviceLimitService
 
     private  function hasReachedDeviceLimit($user)
     {
-        $maxDevice = $user->getCurrentPlan()->max_devices ?? 1;
-        UserDevice::query()->where('user_id', $user->id);
+
+        $maxDevices = $user->getCurrentPlan()->max_devices ?? 1;
+        return UserDevice::where('user_id', $user->id)->count() >= $maxDevices;
+        // $maxDevice = $user->getCurrentPlan()->max_devices ?? 1;
+        // return  UserDevice::query()->where('user_id', $user->id)->count() >= $maxDevice;
     }
 
     private function createNewDevice(User $user, array $deviceInfo)
