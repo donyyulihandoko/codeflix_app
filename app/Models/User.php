@@ -54,11 +54,13 @@ class User extends Authenticatable
         return $this->hasMany(Membership::class, 'user_id', 'id');
     }
 
+    // function relation one to many to UserDevice Model
     public function userDevices(): HasMany
     {
         return $this->hasMany(UserDevice::class, 'user_id', 'id');
     }
 
+    // function validasi apakah user memiliki plan membership
     public function hasMembershipPlan(): bool
     {
         return $this->memberships()
@@ -67,6 +69,7 @@ class User extends Authenticatable
             ->exists();
     }
 
+    // function untuk validasi jumlah device / untuk mendapatkan max device
     public function getCurrentPlan()
     {
         $activeMembership = $this->memberships()
@@ -79,5 +82,11 @@ class User extends Authenticatable
         if (!$activeMembership) return null;
 
         return Plan::query()->find($activeMembership->id);
+    }
+
+    // function relation one to many to Rating Model
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class, 'user_id', 'id');
     }
 }
