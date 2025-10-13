@@ -5,8 +5,6 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Illuminate\Support\Facades\Cache;
-use App\Models\Category;
 use App\Services\CategoryService;
 
 class CategoryNav extends Component

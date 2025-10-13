@@ -24,7 +24,9 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // $this->app->singleton(CategoryService::class, function ($app) {
+        //     return new CategoryServiceImpl();
+        // });
     }
 
     /**

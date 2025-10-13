@@ -6,17 +6,24 @@
                 Kategori
             </a>
             <div class="dropdown-menu">
-                @foreach ($categories as $chunk)
+                {{-- @foreach ($categories as $chunk)
                     <ul>
                         @foreach ($chunk as $category)
-                            <li><a class="dropdown-item" href="#">{{ $category->title }}</a></li>
+                            <li>
+                                <a class="dropdown-item" href="">{{ $category->title }}</a>
+                            </li>
                         @endforeach
                     </ul>
-                @endforeach
+                @endforeach --}}
+                <ul>
+                    @foreach ($categories as $item)
+                        <li>{{ $item->title }}</li>
+                    @endforeach
+                </ul>
 
             </div>
         </li>
-        {{-- <li class="nav-item"><a class="nav-link text-white" href="{{ route('movies.index') }}">Movie</a></li> --}}
+        <li class="nav-item"><a class="nav-link text-white" {{-- href="{{ route('movies.index') }}" --}}>Movie</a></li>
     </ul>
-    <!-- The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh -->
+    <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
 </div>

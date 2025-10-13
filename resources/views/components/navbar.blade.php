@@ -15,7 +15,7 @@
                 placeholder="Cari Disini" aria-label="Search">
             <i class="fa-solid fa-magnifying-glass search-icon" onclick="this.closest('form').submit();"
                 style="cursor: pointer"></i>
-            </form>
+            {{-- </form> --}}
             <ul class="pt-3 nav-icon d-flex">
                 <li class="dropdown me-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

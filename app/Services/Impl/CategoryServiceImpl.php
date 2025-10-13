@@ -16,6 +16,14 @@ class CategoryServiceImpl implements CategoryService
                 ->get();
         });
 
-        return  $data->chunk(ceil($data->count() / 3));
+        // return  $data->chunk(ceil($data->count() / 3));
+        return $data;
     }
+
+    public function getCategory(Category $category)
+    {
+        return $category;
+    }
+
+    public function showMovie() {}
 }

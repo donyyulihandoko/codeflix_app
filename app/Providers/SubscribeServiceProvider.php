@@ -4,9 +4,10 @@ namespace App\Providers;
 
 use App\Services\Impl\SubscribeServiceImpl;
 use App\Services\SubscribeService;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class SubscribeServiceProvider extends ServiceProvider
+class SubscribeServiceProvider extends ServiceProvider implements DeferrableProvider
 {
 
     public array $singletons = [
