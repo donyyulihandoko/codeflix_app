@@ -54,4 +54,36 @@ class MovieController extends Controller implements HasMiddleware
             'streamingUrl' => $detailMovie->getUrlMovie($resolutionPlan)
         ]);
     }
+
+    public function search(Request $request): Response
+    {
+        $search = $request->input('search');
+        $movies = $this->movieService->search($search);
+
+        return response()->view('movies.search', [
+            'keyword' => $search,
+            'movies' => $movies
+        ]);
+    }
+
+    public function allMovie(): Response
+    {
+        $movies = $this->movieService->all();
+        return response()->view('movies.all-movie', [
+            'movies' => $movies
+        ]);
+    }
+
+    public function all(Request $request)
+    {
+        $movies = $this->movieService->allMovie();
+        if ($request->ajax()) {
+            $html = view('components.movie-list', compact('movies'))->render();
+            return response()->json([
+                'html' => $html,
+                'next_page' => $movies->nextPageUrl()  // Mengirim URL halaman berikutnya
+            ]);
+        }
+        return view('movies.all', compact('movies'));
+    }
 }

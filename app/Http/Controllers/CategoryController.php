@@ -32,13 +32,13 @@ class CategoryController extends Controller implements HasMiddleware
         ];
     }
 
-    public function show(Category $getCategory): Response
+    public function show(Category $category): Response
     {
-        // $getCategory = $this->categoryService->getCategory($category);
+        $getCategory = $this->categoryService->getCategory($category);
         $movie = $getCategory->movies()->latest()->get();
         return response()->view('categories.show', [
             'category' => $getCategory,
-            'movie' => $movie
+            'movies' => $movie
         ]);
     }
 }

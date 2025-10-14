@@ -10,5 +10,5 @@ interface CategoryService
 
     public function getCategory(Category $category);
 
-    public function showMovie();
+    public function showMovie(Category $category);
 }

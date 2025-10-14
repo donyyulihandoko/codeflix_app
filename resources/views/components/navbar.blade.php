@@ -10,12 +10,12 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <x-category-nav />
-            {{-- <form class="d-flex me-md-5" role="search" method="GET" action="{{ route('movies.search') }}"> --}}
-            <input class="form-control search-box" type="search" name="q" value="{{ request('q') }}"
-                placeholder="Cari Disini" aria-label="Search">
-            <i class="fa-solid fa-magnifying-glass search-icon" onclick="this.closest('form').submit();"
-                style="cursor: pointer"></i>
-            {{-- </form> --}}
+            <form class="d-flex me-md-5" role="search" method="GET" action="{{ route('movies.search') }}">
+                <input class="form-control search-box" type="search" name="search" value="{{ request('search') }}"
+                    placeholder="Cari Disini" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass search-icon" onclick="this.closest('form').submit();"
+                    style="cursor: pointer"></i>
+            </form>
             <ul class="pt-3 nav-icon d-flex">
                 <li class="dropdown me-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

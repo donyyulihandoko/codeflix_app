@@ -13,6 +13,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [MovieController::class, 'index'])->middleware(['auth', 'device_limit']);
+Route::get('movies', [MovieController::class, 'all'])->name('movies.index');
+Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');
 Route::get('/movies/{movie:slug}', [MovieController::class, 'detailMovie'])->name('movies.show');
 
 
@@ -29,4 +31,4 @@ Route::post('/subscribe/checkout', [SubscribeController::class, 'processCheckout
 Route::get('/subscribe/success', [SubscribeController::class, 'checkoutSuccess'])->name('subscribe.success');
 
 // routing controller CategoryController
-Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');

@@ -1,4 +1,3 @@
-<div>
     <ul class="mb-2 navbar-nav me-auto mb-lg-0">
         <li class="nav-item dropdown kategori-dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -6,24 +5,20 @@
                 Kategori
             </a>
             <div class="dropdown-menu">
-                {{-- @foreach ($categories as $chunk)
+                @foreach ($categories as $chunk)
                     <ul>
                         @foreach ($chunk as $category)
                             <li>
-                                <a class="dropdown-item" href="">{{ $category->title }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('category.show', $category->slug) }}">{{ $category->title }}</a>
                             </li>
                         @endforeach
                     </ul>
-                @endforeach --}}
-                <ul>
-                    @foreach ($categories as $item)
-                        <li>{{ $item->title }}</li>
-                    @endforeach
-                </ul>
+                @endforeach
+
 
             </div>
         </li>
-        <li class="nav-item"><a class="nav-link text-white" {{-- href="{{ route('movies.index') }}" --}}>Movie</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{{ route('movies.index') }}">Movie</a></li>
     </ul>
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
-</div>
