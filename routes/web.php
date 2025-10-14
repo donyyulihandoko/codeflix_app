@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubscribeController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -12,6 +13,11 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [MovieController::class, 'index'])->middleware(['auth', 'device_limit']);
+Route::get('movies', [MovieController::class, 'all'])->name('movies.index');
+Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');
+Route::get('/movies/{movie:slug}', [MovieController::class, 'detailMovie'])->name('movies.show');
+
+
 
 // routing untuk override di fortify untuk menambahkan middleware
 Route::post('/logout', function (Request $request) {
@@ -23,3 +29,6 @@ Route::get('/subscribe/plans', [SubscribeController::class, 'showPlans'])->name(
 Route::get('/subscribe/plan/{plan}', [SubscribeController::class, 'checkoutPlan'])->name('subscribe.checkout');
 Route::post('/subscribe/checkout', [SubscribeController::class, 'processCheckoutPlan'])->name('subscribe.process');
 Route::get('/subscribe/success', [SubscribeController::class, 'checkoutSuccess'])->name('subscribe.success');
+
+// routing controller CategoryController
+Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
