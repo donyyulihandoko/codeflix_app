@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Plan;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class User extends Authenticatable
 {
@@ -54,6 +58,13 @@ class User extends Authenticatable
         return $this->hasMany(Membership::class, 'user_id', 'id');
     }
 
+    // function relation ke model Plan melewati Membership
+    public function plans(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Plan::class, 'memberships', 'user_id', 'plan_id');
+    }
+
+
     // function relation one to many to UserDevice Model
     public function userDevices(): HasMany
     {
@@ -69,7 +80,7 @@ class User extends Authenticatable
             ->exists();
     }
 
-    // function untuk validasi jumlah device / untuk mendapatkan max device
+    // function untuk validasi jumlah device / untuk mendapatkan plan yang dimiliki user
     public function getCurrentPlan()
     {
         $activeMembership = $this->memberships()
