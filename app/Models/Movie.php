@@ -21,8 +21,8 @@ class Movie extends Model
         'poster',
         'release_date',
         'duration',
-        'url_780p',
-        'url_1080p',
+        'url_720',
+        'url_1080',
         'url_4k'
     ];
 
@@ -46,5 +46,19 @@ class Movie extends Model
     public function getAverageRatingAttribute(): float
     {
         return $this->ratings()->avg('rating');
+    }
+
+    // function get url resolution movie
+    public function getUrlMovie(string $planResolution)
+    {
+        if ($planResolution === '720p') {
+            return $this->url_720;
+        } elseif ($planResolution === '1080') {
+            return $this->url_1080;
+        } elseif ($planResolution === '4k') {
+            return $this->url_4k;
+        } else {
+            return $this->url_720;
+        }
     }
 }

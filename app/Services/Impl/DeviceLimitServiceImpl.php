@@ -74,6 +74,7 @@ class DeviceLimitServiceImpl implements DeviceLimitService
         // return  UserDevice::query()->where('user_id', $user->id)->count() >= $maxDevice;
     }
 
+
     private function createNewDevice(User $user, array $deviceInfo)
     {
         return UserDevice::create([
