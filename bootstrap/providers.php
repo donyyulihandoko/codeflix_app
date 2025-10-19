@@ -5,6 +5,7 @@ return [
     App\Providers\CategoryServiceProvider::class,
     App\Providers\DeviceLimitServiceProvider::class,
     App\Providers\FortifyServiceProvider::class,
+    App\Providers\MembershipServiceProvider::class,
     App\Providers\MovieServiceProvider::class,
     App\Providers\PlanServiceProvider::class,
     App\Providers\SubscribeServiceProvider::class,
