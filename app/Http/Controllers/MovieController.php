@@ -18,6 +18,16 @@ class MovieController extends Controller implements HasMiddleware
     private PlanService $planService;
     private MovieService $movieService;
 
+
+    public static function middleware(): array
+    {
+        return [
+            'auth',
+            'device_limit',
+            // 'member_active'
+        ];
+    }
+
     public function __construct(MovieService $movieService, UserService $userService, PlanService $planService)
     {
         $this->userService = $userService;
@@ -25,13 +35,6 @@ class MovieController extends Controller implements HasMiddleware
         $this->movieService = $movieService;
     }
 
-    public static function middleware(): array
-    {
-        return [
-            'auth',
-            'device_limit'
-        ];
-    }
 
     public function index(): Response
     {
