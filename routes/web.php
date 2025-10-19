@@ -6,16 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::controller(MovieController::class)->group(function () {
+    Route::get('/', 'index')->middleware(['auth', 'device_limit']);
+    Route::get('movies', 'all')->name('movies.index');
+    Route::get('/movies/search', 'search')->name('movies.search');
+    Route::get('/movies/{movie:slug}', 'detailMovie')->name('movies.show');
 });
 
-Route::get('/home', [MovieController::class, 'index'])->middleware(['auth', 'device_limit']);
-Route::get('movies', [MovieController::class, 'all'])->name('movies.index');
-Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');
-Route::get('/movies/{movie:slug}', [MovieController::class, 'detailMovie'])->name('movies.show');
 
 
 
@@ -32,3 +34,11 @@ Route::get('/subscribe/success', [SubscribeController::class, 'checkoutSuccess']
 
 // routing controller CategoryController
 Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
+
+
+Route::get('/test-expired', function () {
+    $membership = \App\Models\Membership::find(1);
+    event(new \App\Events\MembershipHasExpired($membership));
+
+    return 'Event fired';
+});
